@@ -9,9 +9,6 @@
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
 
-    <!-- Title Page-->
-    <title>User Form</title>
-
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -27,7 +24,7 @@
 </head>
 
 <body>
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="page-wrapper  p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
@@ -37,27 +34,47 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Nombre*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <input class="input--style-4" type="text" ng-model="cliente.nombre" ng-minlength="3" ng-maxlength="50" class="form-control" placeholder="Juan" requiredname="first_name">
+                                    <div class="inscripcion-form" ng-if="inscripcionForm.nombre.$touched" ng-messages="inscripcionForm.nombre.$error"  role="alert">
+                                        <small ng-message="required">Es necesario tu nombre</small>
+                                        <small ng-message="minlength">El nombre es muy corto</small>
+                                        <small ng-message="maxlength">Tu nombre es muy largo</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Apellido paterno *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label for="paterno" class="label">Apellido paterno *</label>
+                                    <input class="input--style-4" type="text" name="last_name"  ng-model="cliente.paterno" ng-minlength="3" ng-maxlength="50" class="form-control" placeholder="Ramirez" required>
+                                    <div ng-if="inscripcionForm.paterno.$touched" ng-messages="inscripcionForm.paterno.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario tu apellido</small>
+                                        <small ng-message="minlength">Tu apellido es muy corto</small>
+                                        <small ng-message="maxlength">Tu apellido es muy largo</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Apellido materno*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label for="materno" class="label">Apellido materno*</label>
+                                    <input class="input--style-4" type="text" name="first_name ng-model="cliente.materno" ng-minlength="3" ng-maxlength="50" class="form-control" placeholder="Ortiz" required">
+                                    <div ng-if="inscripcionForm.materno.$touched" ng-messages="inscripcionForm.materno.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario tu apellido</small>
+                                        <small ng-message="minlength">Tu apellido es muy corto</small>
+                                        <small ng-message="maxlength">Tu apellido es muy largo</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">RFC *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label for="rfc" class="label">RFC *</label>
+                                    <input class="input--style-4" type="text" name="rfc" ng-model="cliente.rfc" class="form-control" ng-pattern="/[A-Za-z]{3,4}[0-9]{6}(\w{3})?/" ng-maxlength="13" placeholder="XXAX112233" required>
+                                    <div  class="inscripcion-form" ng-if="inscripcionForm.rfc.$touched" ng-messages="inscripcionForm.rfc.$error" role="alert">
+                                        <small ng-message="required">Es necesario tu RFC</small>
+                                        <small ng-message="pattern">El RFC es incorrecto, debe contenere entre 10 y 13 caracteres y conservar la estructura de un RFC</small>
+                                        <small ng-message="maxlength">El RFC debe tener máximo 13 caracteres</small>
+                                    </div>
                                 </div>
                             </div>
                            
@@ -65,14 +82,25 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Correo electronico *</label>
-                                    <input class="input--style-4" type="email" name="email">
+                                    <label for="email" class="label">Correo electronico *</label>
+                                    <input class="input--style-4" type="email" ng-model="cliente.email" ng-minlength="3" ng-maxlength="50" class="form-control" name="email" placeholder="correo@ejemplo.com" required>
+                                    <div class="inscripcion-form" ng-if="inscripcionForm.email.$touched" ng-messages="inscripcionForm.email.$error" role="alert">
+                                        <small ng-message="required">Es necesario tu email, ahí te llegará toda la informacion de tu servicio</small>
+                                        <small ng-message="email">El correo es incorrecto</small>
+                                        <small ng-message="minlength">Tu email es muy corto</small>
+                                        <small ng-message="maxlength">Tu email es muy largo</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Celular de contacto *</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                    <label for="celular" class="label">Celular de contacto *</label>
+                                    <input class="input--style-4" type="text" name="phone" ng-model="cliente.celular"  ng-minlength="10" ng-maxlength="10" class="form-control" ng-pattern="/[0-9]{10}/" placeholder="5511223344" required>
+                                    <div class="inscripcion-form" ng-if="inscripcionForm.rfc.$touched" ng-messages="inscripcionForm.rfc.$error" role="alert">
+                                        <small ng-message="required">Es necesario tu RFC</small>
+                                        <small ng-message="pattern">El RFC es incorrecto, debe contenere entre 10 y 13 caracteres y conservar la estructura de un RFC</small>
+                                        <small ng-message="maxlength">El RFC debe tener máximo 13 caracteres</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +109,7 @@
             </div>
         </div>
     </div>
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="page-wrapper p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
@@ -90,28 +118,42 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Código Postal*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label for="cp" class="label">Código Postal*</label>
+                                    <input class="input--style-4" type="text" ng-model="direccion_servicio.cp" class="form-control" ng-change="getAddress()" name="cp" ng-pattern="/\d{5}/" ng-minlength="5" ng-maxlength="5" placeholder="52258" required>
+                                    <div class="inscripcion-form" ng-if="servicioForm.cp.$touched" ng-messages="servicioForm.cp.$error" role="alert">
+                                        <small ng-message="required">Es necesario el código postal</small>
+                                        <small ng-message="pattern">El código postal es incorrecto</small>
+                                        <small ng-message="minlength">El código postal debe tener 5 digitos</small>
+                                        <small ng-message="maxlength">El código postal debe tener 5 digitos</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Calle *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label for="calle" class="label">Calle *</label>
+                                    <input class="input--style-4" type="text" ng-model="direccion_servicio.calle" class="form-control" ng-minlength="3" ng-maxlength="50" name="calle" placeholder="5 de febrero" required>
+                                    <div class="inscripcion-form" ng-if="servicioForm.calle.$touched" ng-messages="servicioForm.calle.$error" role="alert">
+                                        <small ng-message="required">Es necesaria la calle</small>
+                                        <small ng-message="minlength">La calle es muy corta</small>
+                                        <small ng-message="maxlength">La calle es muy larga</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Numero exterior*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label for="num_ext" class="label">Numero exterior*</label>
+                                    <input class="input--style-4" type="text" ng-model="direccion_servicio.num_ext" class="form-control" ng-minlength="1" ng-maxlength="50" name="num_ext" placeholder="31B" required>
+                                    <div class="inscripcion-form" ng-if="servicioForm.num_ext.$touched" ng-messages="servicioForm.num_ext.$error" role="alert">
+                                        <small ng-message="required">Es necesario el número de tu domicilio</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Numero interior</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label for="num_int" class="label">Numero interior</label>
+                                    <input class="input--style-4" type="text" ng-model="direccion_servicio.num_int" class="form-control" name="num_int" placeholder="202">
                                 </div>
                             </div>
                            
@@ -119,21 +161,40 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Colonia*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label class="label" for="colonia">Colonia *</label>
+                                    <select name="colonia" ng-model="direccion_servicio.colonia" class="form-control" required>
+                                        <option value="{{ colonia }}" ng-repeat="colonia in seleccionables.servicio.colonias">{{ colonia }}</option>
+                                    </select>
+                                    <div ng-if="servicioForm.colonia.$touched" ng-messages="servicioForm.colonia.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario la colonia</small>
+                                    </div>
+                                    <!-- <input class="input--style-4" type="text" name="first_name"> -->
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Municipio *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label for="municipio" class="label">Municipio *</label>
+                                    <select name="municipio" ng-model="direccion_servicio.ciudad" class="form-control" required>
+                                        <option value="{{ ciudad }}" ng-repeat="ciudad in seleccionables.servicio.ciudades">{{ ciudad }}</option>
+                                    </select>
+                                    <div ng-if="servicioForm.municipio.$touched" ng-messages="servicioForm.municipio.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario el municipio</small>
+                                    </div>
+
+                                    <!-- <input class="input--style-4" type="text" name="last_name"> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Estado *</label>
-                                <input class="input--style-4" type="text" name="last_name">
+                                <select name="estado" ng-model="direccion_servicio.estado" class="form-control" required>
+                                    <option value="{{ estado.estado_id }}" ng-repeat="estado in seleccionables.servicio.estados">{{ estado.descripcion }}</option>
+                                </select>
+                                <div ng-if="servicioForm.estado.$touched" ng-messages="servicioForm.estado.$error" style="color:red" role="alert">
+                                    <small ng-message="required">Es necesario el estado</small>
+                                </div>
+                                <!-- <input class="input--style-4" type="text" name="last_name"> -->
                             </div>
                         </div>
                     </form>
@@ -142,37 +203,57 @@
         </div>
     </div>
 
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="page-wrapper p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Dirección de entrega</h2>
+                    <h2 class="title">Dirección de entregade la SIM</h2>
+                    <h6>(El envío es gratuito y tarda en llegar de 4 a 7 días)</h6>
+                    <div class="col-3 offset-1">
+                        <div class="form-check">
+                            <input ng-model="direccion_envio.misma" class="form-check-input" type="checkbox" value="S" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                            Utilizar la dirección de servicio
+                            </label>
+                        </div>
+                    </div>
+                    <div ng-hide="direccion_envio.misma">
                     <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Código Postal*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label for="cp" class="label">Código Postal*</label>
+                                    <input class="input--style-4" type="text" ng-model="direccion_envio.cp" class="form-control" name="cp" ng-pattern="/\d{5}/" ng-change="getAddressEnvio()" ng-maxlength="5" placeholder="52258" ng-required="!direccion_envio.misma">
+                                    <div ng-if="envioForm.cp.$touched" ng-messages="envioForm.cp.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario el código postal</small>
+                                        <small ng-message="pattern">El código postal es incorrecto</small>
+                                        <small ng-message="mxlenght">El código postal debe tener máximo 5 dígitos</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Calle *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label for="calle" class="label">Calle *</label>
+                                    <input class="input--style-4" type="text" ng-model="direccion_envio.calle" class="form-control" name="calle" ng-minlength="3" ng-maxlength="50" placeholder="5 de febrero" ng-required="!direccion_envio.misma">
+                                    <div ng-if="envioForm.calle.$touched" ng-messages="envioForm.calle.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesaria la calle</small>
+                                        <small ng-message="minlength">La calle es muy corta</small>
+                                        <small ng-message="maxlength">La calle es muy larga</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Numero exterior*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label for="num_int" class="label">Numero exterior*</label>
+                                    <input class="input--style-4" type="text" ng-model="direccion_envio.num_ext" class="form-control" name="num_ext" ng-maxlength="50" placeholder="31B" ng-required="!direccion_envio.misma">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Numero interior</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label for="num_int" class="label">Numero interior</label>
+                                    <input class="input--style-4" type="text" ng-model="direccion_envio.num_int" class="form-control" name="num_int" placeholder="202">
                                 </div>
                             </div>
                            
@@ -180,102 +261,203 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Colonia*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label for="colonia class="label">Colonia*</label>
+                                    <select class="input--style-4" type="text" ng-model="direccion_envio.colonia" class="form-control" ng-required="!direccion_envio.misma">
+                                    <option value="{{ colonia }}" ng-repeat="colonia in seleccionables.envio.colonias">{{ colonia }}</option>
+                                            </select>
+                                            <div ng-if="envioForm.colonia.$touched" ng-messages="envioForm.colonia.$error" style="color:red" role="alert">
+                                                <small ng-message="required">Es necesario la colonia</small>
+                                            </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Municipio *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label class="label" for="municipio">Municipio *</label>
+                                    <select class="input--style-4" type="text" name="municipio" ng-model="direccion_envio.ciudad" class="form-control" ng-required="!direccion_envio.misma">
+                                    <option value="{{ ciudad }}" ng-repeat="ciudad in seleccionables.envio.ciudades">{{ ciudad }}</option>
+                                            </select>
+                                            <div ng-if="envioForm.municipio.$touched" ng-messages="envioForm.municipio.$error" style="color:red" role="alert">
+                                                <small ng-message="required">Es necesario el municipio</small>
+                                            </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <label class="label">Estado *</label>
-                                <input class="input--style-4" type="text" name="last_name">
+                                <label for="estado" class="label">Estado *</label>
+                                <select class="input--style-4" type="text" name="estado" ng-model="direccion_envio.estado" class="form-control" ng-required="!direccion_envio.misma">
+                                    <option value="{{ estado.estado_id }}" ng-repeat="estado in seleccionables.envio.estados">{{ estado.descripcion }}</option>
+                                            </select>
+                                            <div ng-if="envioForm.estado.$touched" ng-messages="envioForm.estado.$error" style="color:red" role="alert">
+                                                <small ng-message="required">Es necesario el estado</small>
+                                            </div>
                             </div>
                         </div>
                     </form>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="page-wrapper p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
-            <div class="card card-4">
+            <div class="card card-4" name="facturacionForm">
                 <div class="card-body">
                     <h2 class="title">Datos de facturación</h2>
-                    <form method="POST">
+                    <div class="form-check">
+                        <input ng-model="facturacion.requiere_factura" class="form-check-input" type="checkbox" value="S" id="facturaCheck">
+                        <label class="form-check-label" for="facturaCheck">
+                        Requiero factura
+                        </label>
+                    </div>
+                    <form ng-show="facturacion.requiere_factura">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-change="replicaDatos()" ng-model="facturacion.mismos_contrato"> Mismo del contrato
+                            </label>
+                        </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">RFC (con Homoclave)*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <input class="input--style-4" type="text" ng-model="facturacion.rfc" class="form-control" ng-pattern="/[A-Za-z]{3,4}[0-9]{6}\w{3}/" name="rfc" ng-maxlength="13" placeholder="XXXA667799ZZZ" ng-required="facturacion.requiere_factura">
+                                    <div ng-if="facturacionForm.rfc.$touched" ng-messages="facturacionForm.rfc.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario tu RFC</small>
+                                        <small ng-message="pattern">El RFC es incorrecto, debe contenere entre 12 y 13 caracteres y conservar la estructura de un RFC</small>
+                                        <small ng-message="maxlength">El RFC es incorrecto, debe contenere entre 12 y 13 caracteres y conservar la estructura de un RFC</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Nombre o razón social *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Código Postal*</label>
-                                    <input class="input--style-4" type="text" name="first_name">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Calle y numero *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label class="label" for="razon_social">Nombre o razón social *</label>
+                                    <input class="input--style-4" type="text" ng-model="facturacion.razon_social" class="form-control" ng-minlength="3" ng-maxlength="50" name="razon_social" placeholder="Pablo Juan Ramirez Silva" ng-required="facturacion.requiere_factura">
+                                    <div ng-if="facturacionForm.razon_social.$touched" ng-messages="facturacionForm.razon_social.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario tu razón social</small>
+                                        <small ng-message="minlength">La razón social es muy corta</small>
+                                        <small ng-message="maxlength">La razón social es muy larga</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Colonia *</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label class="label"for="cp" >Código Postal*</label>
+                                    <input class="input--style-4" type="text" ng-model="facturacion.cp" class="form-control" name="cp" ng-pattern="/\d{5}/" ng-change="getAddressFacturacion()" ng-minlength="5" ng-maxlength="5" placeholder="12345" ng-required="facturacion.requiere_factura">
+                                    <div ng-if="facturacionForm.cp.$touched" ng-messages="facturacionForm.cp.$error" style="color:red"  role="alert">
+                                        <small ng-message="required">Es necesario el código postal fiscal</small>
+                                        <small ng-message="pattern">El código postal es incorrecto</small>
+                                        <small ng-message="minlength">El código postal debe tener 5 digitos</small>
+                                        <small ng-message="maxlength">El código postal debe tener 5 digitos</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Municipio *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Estado *</label>
-                                    <input class="input--style-4" type="text" name="first_name">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Correo electronico *</label>
-                                    <input class="input--style-4" type="email" name="email">
+                                    <label for="direccion" class="label">Calle y numero *</label>
+                                    <input class="input--style-4" type="text" ng-model="facturacion.direccion" class="form-control" ng-minlength="3" ng-maxlength="100" name="direccion" placeholder="5 de febrero número 5" ng-required="facturacion.requiere_factura">
+                                    <div ng-if="facturacionForm.direccion.$touched" ng-messages="facturacionForm.direccion.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario la dirección fiscal</small>
+                                        <small ng-message="minlength">La dirección fiscal es muy corta</small>
+                                        <small ng-message="maxlength">La dirección fiscal es muy larga</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Telefono (a 10digitos) *</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                    <label for="colonia" class="label">Colonia *</label>
+                                    <select class="input--style-4" name="colonia" ng-model="facturacion.colonia" class="form-control" ng-required="facturacion.requiere_factura">
+                                        <option value="{{ colonia }}" ng-repeat="colonia in seleccionables.facturacion.colonias">{{ colonia }}</option>
+                                    </select>
+                                    <div ng-if="facturacionForm.colonia.$touched" ng-messages="facturacionForm.colonia.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario la colonia</small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Uso CFDI *</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label class="label" for="municipio">Municipio *</label>
+                                    <select class="input--style-4" name="municipio" ng-model="facturacion.ciudad" class="form-control" ng-required="facturacion.requiere_factura">
+                                        <option value="{{ ciudad }}" ng-repeat="ciudad in seleccionables.facturacion.ciudades">{{ ciudad }}</option>
+                                    </select>
+                                    <div ng-if="facturacionForm.municipio.$touched" ng-messages="facturacionForm.municipio.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario el municipio</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="estado" class="label">Estado *</label>
+                                    <select  class="input--style-4" name="estado" ng-model="facturacion.estado" class="form-control" ng-required="facturacion.requiere_factura">
+                                        <option value="{{ estado.estado_id }}" ng-repeat="estado in seleccionables.facturacion.estados">{{ estado.descripcion }}</option>
+                                    </select>
+                                    <div ng-if="facturacionForm.estado.$touched" ng-messages="facturacionForm.facturacion.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario el estado</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="email" class="label">Correo electronico *</label>
+                                    <input class="input--style-4" type="email" ng-model="facturacion.email" class="form-control" ng-minlength="3" ng-maxlength="50" name="email" placeholder="correo@ejemplo.com" ng-required="facturacion.requiere_factura">
+                                            <div ng-if="facturacionForm.email.$touched" ng-messages="facturacionForm.email.$error" style="color:red" role="alert">
+                                                <small ng-message="required">Es necesario el email</small>
+                                                <small ng-message="email">El correo es incorrecto</small>
+                                                <small ng-message="minlength">El email es muy corto</small>
+                                                <small ng-message="maxlength">El email es muy largo</small>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="telefono" class="label">Telefono (a 10digitos) *</label>
+                                    <input class="input--style-4" type="text" ng-model="facturacion.telefono" class="form-control" name="telefono" ng-pattern="/\d{10}/" ng-minlength="10" ng-maxlength="10" placeholder="5511223344" ng-required="facturacion.requiere_factura">
+                                    <div ng-if="facturacionForm.telefono.$touched" ng-messages="facturacionForm.telefono.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario el teléfono</small>
+                                        <small ng-message="pattern">El teléfono es incorrecto, escribelo sin letras, guiones o espacios a 10 dígitos</small>
+                                        <small ng-message="minlength">El teléfono debe tener 10 digitos</small>
+                                        <small ng-message="maxlength">El teléfono debe tener 10 digitos</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="estado" class="label">Uso CFDI *</label>
+                                    <select class="select-cfdi" name="cfdi" ng-model="facturacion.cfdi" class="form-control" ng-required="facturacion.requiere_factura">
+                                        <option value="G01">adquisición de mercancias</option>
+                                        <option value="G02">devoluciones, descuentos o bonificaciones</option>
+                                        <option value="G03">gastos en general</option>
+                                        <option value="I01">construcciones</option>
+                                        <option value="I02">mobilario y equipo de oficina por inversiones</option>
+                                        <option value="I03">equipo de transporte</option>
+                                        <option value="I04">equipo de computo y accesorios</option>
+                                        <option value="I05">dados, troqueles, moldes, matrices y herramental</option>
+                                        <option value="I06">comunicaciones telefónicas</option>
+                                        <option value="I07">comunicaciones satelitales</option>
+                                        <option value="I08">otra maquinaria y equipo</option>
+                                        <option value="D01">honorarios médicos, dentales y gastos hospitalarios.</option>
+                                        <option value="D02">gastos médicos por incapacidad o discapacidad</option>
+                                        <option value="D03">gastos funerales.</option>
+                                        <option value="D04">donativos.</option>
+                                        <option value="D05">intereses reales efectivamente pagados por créditos hipotecarios (casa habitación).</option>
+                                        <option value="D06">aportaciones voluntarias al sar.</option>
+                                        <option value="D07">primas por seguros de gastos médicos.</option>
+                                        <option value="D08">gastos de transportación escolar obligatoria.</option>
+                                        <option value="D09">depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones.</option>
+                                        <option value="D10">pagos por servicios educativos (colegiaturas)</option>
+                                        <option value="P01" selected>por definir</option>
+                                    </select>
+                                    <div ng-if="facturacionForm.cfdi.$touched" ng-messages="facturacionForm.cfdi.$error" style="color:red" role="alert">
+                                        <small ng-message="required">Es necesario el uso de CFDI</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -284,7 +466,7 @@
             </div>
         </div>
     </div>
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="page-wrapper p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
@@ -296,26 +478,57 @@
                                 <div class="input-group">
                                     <label class="label"></label>
                                     <div class="p-t-10">
-                                        <label class="radio-container ">Acepto Términos y condiciones y Contrato de prestación de servicio*
-                                            <input type="radio"  name="">
-                                            <span class="checkmark"></span>
+                                        <div class="form-check">
+                                            <input id="terminosCheck" ng-model="acepto_terminos" class="form-check-input" type="checkbox" name="terminosCheck" required>
+                                            <label class="form-check-label" for="terminosCheck">
+                                            Acepto Términos y condiciones y Contrato de prestación de servicio
+                                            </label>
+                                            <div ng-if="terminosForm.terminosCheck.$pristine" ng-messages="terminosForm.terminosCheck.$error" style="color:red" role="alert">
+                                                <small ng-message="required">Es necesario aceptar los términos y condiciones</small>
+                                            </div>
+                                        </div>
+                                         <div class="row justify-content-start">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input id="avisoCheck" ng-model="acepto_aviso" class="form-check-input" type="checkbox" name="avisoCheck" required>
+                                        <label class="form-check-label" for="avisoCheck">
+                                        Acepto el Aviso de Privacidad
                                         </label>
-                                        <label class="radio-container">Acepto el Aviso de Privacidad*
-                                            <input type="radio" name="">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="radio-container">Acepto que mi dispositivo no es compatible con la red*
-                                            <input type="radio" name="">
-                                            <span class="checkmark"></span>
-                                        </label>
+                                        <div ng-if="terminosForm.avisoCheck.$pristine" ng-messages="terminosForm.avisoCheck.$error" style="color:red" role="alert">
+                                            <small ng-message="required">Es necesario aceptar el aviso de privacidad</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input id="condicionesCheck" ng-model="acepto_condiciones" class="form-check-input" type="checkbox" name="condicionesCheck" required>
+                            <label class="form-check-label" for="condicionesCheck">
+                                <span ng-show="pago.equipo_verificado && mobile_data.imei.homologated == 'HOMOLOGADO'">Acepto que mi dispositivo es compatible con la red</span>
+                                <span ng-show="pago.equipo_verificado && mobile_data.imei.homologated != 'HOMOLOGADO'" >Acepto que mi dispositivo <b>no</b> es compatible con la red</span>
+                                <span ng-hide="pago.equipo_verificado">Acepto que, al no verificar mi dispositivo, el servicio podria presentar fallas por incompatibilidad con el dispositivo </span>
+                            </label>
+                            <div ng-if="terminosForm.condicionesCheck.$pristine" ng-messages="terminosForm.condicionesCheck.$error" style="color:red" role="alert">
+                                <small ng-message="required">Es necesario aceptar las condiciones del dispositivo</small>
+                            </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="input-group">
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Cancelar</button>
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Pagar</button>
+                            <div class="col-2" offset-6>
+                                <button type="button" class="btn btn--radius-2 btn--blue" ng-click="init()">Cancelar</button>
+                            </div>
+                            <div class="col-2 offset-6">
+                                <div class="form-check">
+                                    <button type="button" class="btn btn--radius-2 btn--blue"
+                                            ng-disabled="inscripcionForm.$invalid || facturacionForm.$invalid ||
+                                                         envioForm.$invalid || servicionForm.$invalid ||
+                                                         terminosForm.$invalid || !pago.nombre_paquete"
+                                            ng-click="mostrarSiguiente(2)">Pagar</button>
+
+                                    <!--ng-disabled="inscripcionForm.$invalid || facturacionForm.$invalid || envioForm.$invalid || servicionForm.$invalid || terminosForm.$invalid"-->
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </form>

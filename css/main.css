@@ -38,11 +38,25 @@
   width: calc((100% - 30px) / 2);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 4793%) {
   .col-2 {
     width: 100%;
   }
+  
 }
+
+.select-cfdi {
+  background-color: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+  cursor: pointer;
+  float: left;
+  overflow: hidden;
+  padding-right: 3em;
+  position: relative;
+  width: 100%;
+}
+
 
 /* ==========================================================================
    #BOX-SIZING
@@ -120,8 +134,9 @@ button {
 /* ==========================================================================
    #PAGE WRAPPER
    ========================================================================== */
-.page-wrapper {
+   .page-wrapper {
   min-height: 100vh;
+  background-color: #89438e40;
 }
 
 body {
@@ -357,6 +372,10 @@ input {
   width: 100%;
   font-size: 14px;
   font-family: inherit;
+}
+
+.inscripcion-form{
+  color:red;
 }
 
 .input--style-4 {
@@ -638,5 +657,11 @@ input {
 @media (max-width: 767px) {
   .card-4 .card-body {
     padding: 50px 40px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .card-4 .card-body {
+    width: 100%;
+    margin-top: 0;
   }
 }
