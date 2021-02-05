@@ -29,7 +29,7 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Datos Personales</h2>
-                    <form method="POST">
+                    <form>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -114,7 +114,7 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Dirección de servicio</h2>
-                    <form method="POST">
+                    <form>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -207,18 +207,20 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Dirección de entregade la SIM</h2>
-                    <h6>(El envío es gratuito y tarda en llegar de 4 a 7 días)</h6>
-                    <div class="col-3 offset-1">
-                        <div class="form-check">
-                            <input ng-model="direccion_envio.misma" class="form-check-input" type="checkbox" value="S" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                            Utilizar la dirección de servicio
-                            </label>
+                     <h2 class="title">Dirección de entrega de la SIM</h2>
+                            <h6 class="label">(El envío es gratuito y tarda en llegar de 4 a 7 días)</h6>
+                        <div class="col-2">
+                            <div class="form-check">
+                                <input ng-model="direccion_envio.misma" class="form-check-input" type="checkbox" value="S" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                Utilizar la dirección de servicio
+                                </label>
+                            </div>
                         </div>
-                    </div>
+                   
+                    
                     <div ng-hide="direccion_envio.misma">
-                    <form method="POST">
+                    <form>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -261,7 +263,7 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label for="colonia class="label">Colonia*</label>
+                                    <label for="colonia" class="label">Colonia*</label>
                                     <select class="input--style-4" type="text" ng-model="direccion_envio.colonia" class="form-control" ng-required="!direccion_envio.misma">
                                     <option value="{{ colonia }}" ng-repeat="colonia in seleccionables.envio.colonias">{{ colonia }}</option>
                                             </select>
@@ -431,7 +433,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label for="estado" class="label">Uso CFDI *</label>
-                                    <select class="select-cfdi" name="cfdi" ng-model="facturacion.cfdi" class="form-control" ng-required="facturacion.requiere_factura">
+                                    <select class="input--style-4" name="cfdi" ng-model="facturacion.cfdi" class="form-control" ng-required="facturacion.requiere_factura">
                                         <option value="G01">adquisición de mercancias</option>
                                         <option value="G02">devoluciones, descuentos o bonificaciones</option>
                                         <option value="G03">gastos en general</option>
@@ -470,7 +472,7 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <form method="POST">
+                    <form>
                         <div class="row row-space">
                           
                         <div class="input-group">
@@ -513,23 +515,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group">
-                        <div class="p-t-15">
-                            <div class="col-2" offset-6>
-                                <button type="button" class="btn btn--radius-2 btn--blue" ng-click="init()">Cancelar</button>
-                            </div>
-                            <div class="col-2 offset-6">
-                                <div class="form-check">
+                            <div class="input-group">
+                                <div class="p-t-15">
+                                    <button class="btn btn--radius-2 btn--blue" type="button" ng-click="init()">Cancelar</button>
                                     <button type="button" class="btn btn--radius-2 btn--blue"
-                                            ng-disabled="inscripcionForm.$invalid || facturacionForm.$invalid ||
-                                                         envioForm.$invalid || servicionForm.$invalid ||
-                                                         terminosForm.$invalid || !pago.nombre_paquete"
-                                            ng-click="mostrarSiguiente(2)">Pagar</button>
-
-                                    <!--ng-disabled="inscripcionForm.$invalid || facturacionForm.$invalid || envioForm.$invalid || servicionForm.$invalid || terminosForm.$invalid"-->
+                                    ng-disabled="inscripcionForm.$invalid || facturacionForm.$invalid ||
+                                                 envioForm.$invalid || servicionForm.$invalid ||
+                                                 terminosForm.$invalid || !pago.nombre_paquete"
+                                    ng-click="mostrarSiguiente(2)">Pagar</button>
                                 </div>
                             </div>
-                        </div>
                     </div>
                     </form>
                 </div>
