@@ -2,24 +2,9 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Colorlib Templates">
-    <meta name="author" content="Colorlib">
-    <meta name="keywords" content="Colorlib Templates">
-
-    <!-- Icons font CSS-->
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Vendor CSS-->
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
 </head>
 
@@ -131,7 +116,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label for="calle" class="label">Calle *</label>
-                                    <input class="input--style-4" type="text" ng-model="direccion_servicio.calle" class="form-control" ng-minlength="3" ng-maxlength="50" name="calle" placeholder="5 de febrero" required>
+                                    <input class="input--style-4" type="text" ng-model="direccion_servicio.calle"  ng-minlength="3" ng-maxlength="50" name="calle" placeholder="5 de febrero" required>
                                     <div class="inscripcion-form" ng-if="servicioForm.calle.$touched" ng-messages="servicioForm.calle.$error" role="alert">
                                         <small ng-message="required">Es necesaria la calle</small>
                                         <small ng-message="minlength">La calle es muy corta</small>
@@ -161,40 +146,36 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label" for="colonia">Colonia *</label>
-                                    <select name="colonia" ng-model="direccion_servicio.colonia" class="form-control" required>
-                                        <option value="{{ colonia }}" ng-repeat="colonia in seleccionables.servicio.colonias">{{ colonia }}</option>
-                                    </select>
-                                    <div ng-if="servicioForm.colonia.$touched" ng-messages="servicioForm.colonia.$error" style="color:red" role="alert">
-                                        <small ng-message="required">Es necesario la colonia</small>
-                                    </div>
-                                    <!-- <input class="input--style-4" type="text" name="first_name"> -->
+                                    <label for="colonia" class="label">Colonia*</label>
+                                    <select class="input--style-4" type="text" ng-model="direccion_envio.colonia" ng-required="!direccion_envio.misma">
+                                    <option value="{{ colonia }}" ng-repeat="colonia in seleccionables.envio.colonias">{{ colonia }}</option>
+                                            </select>
+                                            <div ng-if="envioForm.colonia.$touched" ng-messages="envioForm.colonia.$error" style="color:red" role="alert">
+                                                <small ng-message="required">Es necesario la colonia</small>
+                                            </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label for="municipio" class="label">Municipio *</label>
-                                    <select name="municipio" ng-model="direccion_servicio.ciudad" class="form-control" required>
+                                    <select name="municipio" ng-model="direccion_servicio.ciudad" class="input--style-4" required>
                                         <option value="{{ ciudad }}" ng-repeat="ciudad in seleccionables.servicio.ciudades">{{ ciudad }}</option>
                                     </select>
                                     <div ng-if="servicioForm.municipio.$touched" ng-messages="servicioForm.municipio.$error" style="color:red" role="alert">
                                         <small ng-message="required">Es necesario el municipio</small>
                                     </div>
-
-                                    <!-- <input class="input--style-4" type="text" name="last_name"> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Estado *</label>
-                                <select name="estado" ng-model="direccion_servicio.estado" class="form-control" required>
+                                <select name="estado" ng-model="direccion_servicio.estado" class="input--style-4" required>
                                     <option value="{{ estado.estado_id }}" ng-repeat="estado in seleccionables.servicio.estados">{{ estado.descripcion }}</option>
                                 </select>
                                 <div ng-if="servicioForm.estado.$touched" ng-messages="servicioForm.estado.$error" style="color:red" role="alert">
                                     <small ng-message="required">Es necesario el estado</small>
                                 </div>
-                                <!-- <input class="input--style-4" type="text" name="last_name"> -->
                             </div>
                         </div>
                     </form>
@@ -236,7 +217,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label for="calle" class="label">Calle *</label>
-                                    <input class="input--style-4" type="text" ng-model="direccion_envio.calle" class="form-control" name="calle" ng-minlength="3" ng-maxlength="50" placeholder="5 de febrero" ng-required="!direccion_envio.misma">
+                                    <input class="input--style-4" type="text" ng-model="direccion_envio.calle" name="calle" ng-minlength="3" ng-maxlength="50" placeholder="5 de febrero" ng-required="!direccion_envio.misma">
                                     <div ng-if="envioForm.calle.$touched" ng-messages="envioForm.calle.$error" style="color:red" role="alert">
                                         <small ng-message="required">Es necesaria la calle</small>
                                         <small ng-message="minlength">La calle es muy corta</small>
@@ -255,7 +236,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label for="num_int" class="label">Numero interior</label>
-                                    <input class="input--style-4" type="text" ng-model="direccion_envio.num_int" class="form-control" name="num_int" placeholder="202">
+                                    <input class="input--style-4" type="text" ng-model="direccion_envio.num_int" name="num_int" placeholder="202">
                                 </div>
                             </div>
                            
@@ -264,7 +245,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label for="colonia" class="label">Colonia*</label>
-                                    <select class="input--style-4" type="text" ng-model="direccion_envio.colonia" class="form-control" ng-required="!direccion_envio.misma">
+                                    <select class="input--style-4" type="text" ng-model="direccion_envio.colonia" ng-required="!direccion_envio.misma">
                                     <option value="{{ colonia }}" ng-repeat="colonia in seleccionables.envio.colonias">{{ colonia }}</option>
                                             </select>
                                             <div ng-if="envioForm.colonia.$touched" ng-messages="envioForm.colonia.$error" style="color:red" role="alert">
@@ -532,17 +513,6 @@
         </div>
     </div>
 
-    <!-- Jquery JS-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
-
-    <!-- Main JS-->
-    <script src="js/global.js"></script>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 
 </html>
-<!-- end document-->
